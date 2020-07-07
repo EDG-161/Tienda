@@ -1,0 +1,48 @@
+<div *ngIf="!loadHomeData">
+  <app-tiamiqui-carousel [tiamiquiCarousel]="carouselData"></app-tiamiqui-carousel>
+  <div class="tiamiqui-section-container sol-image margin-left-sol">
+    <h2 class="title full-pattern text-align-end">Artesanías destacadas</h2>
+    <div class="space-between-cards">
+      <app-tiamiqui-product *ngFor="let item of artesanias" [item]="item"></app-tiamiqui-product>
+    </div>
+  </div>
+  <div class="center-button">
+    <button mat-raised-button color="primary" (click)="goToMap()">Ver todas las artesanías</button>
+  </div>
+  <div class="tiamiqui-section-container">
+    <p-carousel
+      [value]="artesanos"
+      styleClass="custom-carousel"
+      [style]="{'width': '98vw'}"
+      [numVisible]="4"
+      [numScroll]="1"
+      [circular]="true"
+      [autoplayInterval]="3000">
+      <p-header>
+        <h2 class="title full-pattern text-align-end">Artesanos</h2>
+      </p-header>
+      <ng-template let-car pTemplate="item">
+        <div class="artisan-details" (click)="goToArtisan(car.id)">
+          <div class="container-p-carousel">
+            <div class="p-col-12 image-container" [ngStyle]="{'background': 'url(' + car.image + ')'}">
+            </div>
+            <div class="p-col-12 car-data">
+              <div class="car-title">{{car.text}}</div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  <div>
+    <div class="space-between-cards">
+      <div class="text-align-right main-card">
+        <h2 class="text-align-left title margin-left-important">¿Eres Artesano?</h2>
+        <p class="text-align-left no-margin">Nos gustaría conocerte, y que te animes a compartir con todo el mundo tus creaciones.</p>
+        <p class="text-align-left no-margin">Mándanos un correo y te decimos lo fácil que es anunciar tus piezas con nosotros.</p>
+        <button mat-button color="primary">Enviar correo</button>
+      </div>
+      <div class="imagen-if-you-has-artisan"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.no-margin {
+  margin: 0;
+}
+
+.blue-color {
+  color: #03A9F4;
+}
+
+.margin-video {
+  margin: 1rem 0 1rem 0;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-image-place {
+  padding: 1rem;
+}
+
+.handicraft-background {
+  height: 7rem;
+  width: 3rem;
+  cursor: pointer;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.padding-page {
+  padding: 1rem;
+}
+
+.padding-page-sides {
+  padding: 0 1rem 0 1rem;
+}

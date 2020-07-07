@@ -1,0 +1,22 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div>
+  <button mat-raised-button color="primary" (click)="sort('asc')" class="button-margin-button">Ordenar de la A - Z</button>
+  <button mat-raised-button color="primary" (click)="sort('desc')" class="button-margin-button">Ordenar de la Z - A</button>
+</div>
+<div *ngIf="!load" class="news">
+  <div *ngFor="let new of ethnicGroups">
+    <a [href]="'/ethnicGroups/' + new.id" class="card {{active === new.id ? 'new_active' : ''}}">
+      <div class="card__image-holder" [ngStyle]="{'background': 'url(' + new.image + ')'}">
+      </div>
+      <div class="card-title">
+        <p>
+          {{new.group}}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>

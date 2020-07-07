@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Proceso de compra</h2>
+<div mat-dialog-content>
+  <mat-card-content>
+    <mat-card-subtitle>{{data.proceso[0]?.fields.proceso}}</mat-card-subtitle>
+    <markdown>{{data.proceso[0]?.fields.pasos}}</markdown>
+  </mat-card-content>
+<!--  <mat-card-content>-->
+<!--    <mat-form-field style="width: 100%">-->
+<!--      <mat-label>Selecciona país a donde se enviará la artesanía</mat-label>-->
+<!--      <mat-select (selectionChange)="changeCountry($event)">-->
+<!--        <mat-option>Ninguno</mat-option>-->
+<!--        <mat-option *ngFor="let country of data.countries" [value]="country">{{country.name}}</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </mat-card-content>-->
+<!--  <mat-card-content class="payment" [ngClass]="{'payment-responsive': data.responsive}">-->
+<!--    <h3>Desglose de costo total de la artesanía</h3>-->
+<!--    <div>-->
+<!--      <span>Costo de artesanía({{data.artesania?.nombre}}):</span><span>{{data.artesania?.precio | currency}}</span>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <span>Costo del envío: </span><span>{{data.costoEnvio | currency}}</span>-->
+<!--    </div>-->
+<!--    <div><span>Total: </span><span class="color-orange">{{data.total | currency}}</span></div>-->
+<!--  </mat-card-content>-->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="goToLink()">
+    Comprar
+  </button>
+</div>

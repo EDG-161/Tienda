@@ -1,0 +1,138 @@
+.space-between-cards {
+  display: flex;
+  justify-content: space-around;
+  width: 98vw;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+}
+
+.container-p-carousel , .artisan-details {
+  width: 100px;
+  cursor: pointer;
+}
+
+.custom-carousel, .ui-carousel ,  >>> .ui-carousel{
+  width: 98vw;
+}
+
+.imagen-if-you-has-artisan {
+  background: url("../../assets/telar.jpg");
+  width: 14rem;
+  height: 15rem;
+  background-size: contain !important;
+  background-position: right !important;
+  background-repeat: no-repeat !important;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+  height: 5rem;
+}
+
+.tiamiqui-section-container {
+  padding: 1.5rem 0 .5rem 0;
+}
+
+.main-card {
+  z-index: 1;
+  background: white;
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+.colibri-image::before {
+  background: url("../../assets/img/colibri.svg");
+  position: absolute;
+  width: 200px;
+  height: 158px;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  margin-top: -7rem;
+  margin-left: -3rem;
+  left: 50vw;
+  right: 0;
+}
+
+.sol-image::before {
+  background: url("../../assets/sol.png");
+  position: absolute;
+  width: 9rem;
+  height: 9rem;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  margin-left: -3rem;
+  left: -2.4rem;
+  right: 0;
+  margin-top: 4rem;
+}
+
+.text-align-end {
+  text-align: start;
+  font-family: "Roboto", sans-serif;
+}
+
+.title {
+  font-size: 2.9em;
+  margin-left: 1rem;
+}
+
+.margin-left-important {
+  margin-left: 0 !important;
+}
+
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-details > .p-grid {
+  border: 1px solid #b3c2ca;
+  border-radius: 3px;
+  margin: 0.3em;
+  text-align: center;
+  padding: 2em 0 2.25em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.car-title {
+  text-align: center;
+  padding-top: 1rem;
+  width: 240px;
+}
+
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data .car-subtitle {
+  margin: 0.25em 0 2em 0;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button {
+  margin-left: 0.5em;
+}
+.carousel-demo .ui-carousel .ui-carousel-content .ui-carousel-item .car-data button:first-child {
+  margin-left: 0;
+}
+.carousel-demo .ui-carousel.custom-carousel .ui-carousel-dot-icon {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 50%;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-start .car-details > .p-grid {
+  margin-left: 0.6em;
+}
+.carousel-demo .ui-carousel.ui-carousel-horizontal .ui-carousel-content .ui-carousel-item.ui-carousel-item-end .car-details > .p-grid {
+  margin-right: 0.6em;
+}
+
+
+.image-container {
+  width: 240px;
+  height: 200px;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}

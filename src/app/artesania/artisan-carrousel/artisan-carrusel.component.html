@@ -1,0 +1,28 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div *ngIf="!load" class="default-padding">
+  <h2>Otras artesanias
+    de {{artisan?.fields?.nombre}} {{artisan?.fields?.apellidoPaterno}} {{artisan?.fields?.apellidoMaterno}}</h2>
+  <div *ngIf="artesanias">
+    <div class="card text-center m-3">
+      <div class="card-body">
+        <div class="handicraft-background" *ngFor="let item of pageOfItems" [style]="gethandiCraftImage(item.images)"
+             (click)="goHandicraft(item.link)">
+        </div>
+      </div>
+      <div class="card-footer pb-0 pt-3">
+        <app-tiamiqui-paginate [pageSize]="pageSize" [items]="artesanias"
+                               (changePage)="onChangePage($event)"></app-tiamiqui-paginate>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!artesanias">
+    <h4>El artesano no tiene mas artesanias</h4>
+  </div>
+
+</div>
+

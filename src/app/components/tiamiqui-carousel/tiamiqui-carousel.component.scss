@@ -1,0 +1,188 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  position: relative;
+  width: 98vw;
+  flex-direction: column;
+  background: #d9f2ff;
+}
+
+.carousel-images {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+li {
+  display: block;
+  list-style: none;
+  width: 100%;
+}
+
+.tiamiqui-carousel-item-margin-left {
+  padding-left: 2.5em;
+}
+
+.slide-no-view {
+  display: none;
+}
+
+i {
+  color: #1e7bc8;
+  font-size: 50px;
+}
+
+button {
+  background: white;
+  position: absolute;
+  padding: 0;
+  min-width: 1.5em;
+  font-weight: bold;
+}
+
+.carousel-button-left {
+  left: 5px;
+  z-index: 1;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-button-right {
+  right: 5px;
+  z-index: 1;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.tiamiqui-carousel-item {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 20em;
+  background-size: cover;
+  background-position: center;
+}
+
+.tiamiqui-carousel-item-img {
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: right !important;
+}
+
+.tiamiqui-carousel-title {
+  font-size: 2.9em;
+  line-height: 1.2em;
+}
+
+.tiamiqui-carousel-subtitle {
+  font-size: 1.3em;
+  margin: 0;
+}
+.tiamiqui-image-action {
+  position: relative;
+  height: 25em;
+  width: 100%;
+  color: black;
+  text-align: right;
+  line-height: 1.4em;
+  font-size: 16px;
+  margin-top: 50px;
+}
+.tiamiqui-image-action * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.tiamiqui-image-action img, .tiamiqui-image-action .carousel-info {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  opacity: 1;
+  width: 100%;
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+}
+.tiamiqui-image-action figcaption {
+  position: absolute;
+  width: 30%;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 20px 0 20px 40px;
+}
+.tiamiqui-image-action h2,
+.tiamiqui-image-action p {
+  margin: 0;
+  width: 100%;
+  -webkit-transform: translateX(20px);
+  transform: translateX(20px);
+  opacity: 0;
+  text-align: left;
+}
+.tiamiqui-image-action h2 {
+  margin-bottom: 5px;
+}
+.tiamiqui-image-action p {
+  font-size: 1em;
+}
+.tiamiqui-image-action a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.carousel-info {
+  background-size: cover !important;
+  background-position: center !important;
+  height: 100%;
+}
+
+.tiamiqui-image-action:hover img,
+.tiamiqui-image-action.hover img,
+.tiamiqui-image-action:hover .carousel-info,
+.tiamiqui-image-action.hover .carousel-info {
+  width: 60%;
+  right: 8%;
+}
+
+.tiamiqui-image-action:hover figcaption h2,
+.tiamiqui-image-action.hover figcaption h2,
+.tiamiqui-image-action:hover figcaption p,
+.tiamiqui-image-action.hover figcaption p {
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid silver;
+  box-shadow: 1px 1px 6px silver;
+  margin: 10px .2rem 10px .2rem;
+  cursor: pointer;
+  background: white;
+}
+
+.active {
+  background: #4dadf7;
+  border: 1px solid #4dadf7;
+}

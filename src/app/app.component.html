@@ -1,0 +1,132 @@
+<div class="back-to-top" [ngClass]="{'show': showBack}" (click)="setToTop()">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<mat-toolbar color="primary" class="center-menu blur-medium header">
+  <button mat-button routerLink="/" (click)="reset()"
+          style="background:url('assets/logo.png'); background-size: contain!important;" class="button-logo">
+  </button>
+  <div *ngIf="responsive">
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/">Inicio</button>
+      <button mat-menu-item routerLink="/">Blog</button>
+      <button mat-menu-item routerLink="/news">Noticias</button>
+      <button mat-menu-item routerLink="/">Mi cuenta</button>
+      <button mat-menu-item routerLink="/">Notificaciones</button>
+    </mat-menu>
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+  <div class="flex-container-search">
+    <span><i class="fa fa-search"></i></span>
+    <p-autoComplete
+      styleClass="input-search"
+      [(ngModel)]="text"
+      [suggestions]="results"
+      (completeMethod)="search($event)"
+      (onSelect)="goToArtesaniaAutoComplete($event)"
+      field="name"
+      [inputStyle]="{'width':'13rem', 'margin-left': '.5rem'}"
+      placeholder="Buscar artesanía..."
+    >
+      <ng-template let-handicraft pTemplate="item">
+        <div class="ui-helper-clearfix">
+          <img src="{{handicraft.images}}" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/>
+          <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{handicraft.name}}</div>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+  </div>
+  <div *ngIf="!responsive">
+    <button mat-button routerLink="/">Inicio</button>
+    <button mat-button routerLink="/">Idioma</button>
+    <button mat-button routerLink="/">Moneda</button>
+  </div>
+</mat-toolbar>
+<main class="wrapper" [ngClass]="tiamiquiNavigationClass()">
+  <!--  <aside class="left-aside" *ngIf="isVisible()">-->
+  <!--    <div class="aside-container">-->
+  <!--      Menú fijo-->
+  <!--      <button mat-button (click)="toggleLeft()"><i class="fa" [ngClass]="hideLeft ? 'fa-angle-double-right' : 'fa-angle-double-left'"></i></button>-->
+  <!--      <router-outlet name="sidebar"></router-outlet>-->
+  <!--    </div>-->
+  <!--  </aside>-->
+  <section class="content">
+    <router-outlet></router-outlet>
+  </section>
+  <aside class="right-aside" *ngIf="isVisible()">
+    <div class="aside-container">
+      <!--      <button mat-button (click)="toggleRight()"><i class="fa" [ngClass]="hideRight ? 'fa-angle-double-right' : 'fa-angle-double-left'"></i></button>-->
+      <div *ngFor="let handicraft of handicrafts" class="cursor-pointer">
+        <img src="{{handicraft.images}}" width="150px" (click)="goToArtesania(handicraft.id)"/>
+      </div>
+    </div>
+  </aside>
+</main>
+<section class="background-blue">
+  <h2>Suscríbete</h2>
+  <p>Recibe actualizaciones y las últimas noticias. Escribe tu correo electrónico aquí:</p>
+  <div class="subscribe-data">
+    <mat-form-field class="dynamic-width">
+      <span matPrefix><i class="fa fa-envelope"></i></span>
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput>
+    </mat-form-field>
+    <button mat-raised-button color="primary">Regístrate ahora</button>
+  </div>
+</section>
+<footer class="blur-medium">
+  <section class="section-top">
+    <div class="col">
+      <h3 class="margin-left-footer-header">Acerca de</h3>
+      <div>
+        <button mat-button [routerLink]="['/about','']">Nosotros</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/about','team']">Equipo</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/about','support']">Soporte</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/about','joinUs']">Colabora con Nosotros</button>
+      </div>
+    </div>
+    <div class="col">
+      <h3 class="margin-left-footer-header">Ayuda</h3>
+      <div>
+        <button mat-button [routerLink]="['/help','']">Términos y condiciones</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/help','politica']">Aviso de privacidad</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/help','faq']">Preguntas frecuentes</button>
+      </div>
+      <div>
+        <button mat-button [routerLink]="['/help','devolucion']">Política de devolución</button>
+      </div>
+    </div>
+    <div class="col">
+      <h3 class="margin-left-footer-header">Formas de pago</h3>
+      <div class="logos">
+        <img src="../assets/visa.png"/>
+        <img src="../assets/mastercard.png"/>
+      </div>
+      <div></div>
+    </div>
+    <div class="col">
+      <h3 class="margin-left-footer-header">Gestión de envíos</h3>
+      <div>
+        <button mat-button>EnviaYa</button>
+      </div>
+    </div>
+  </section>
+  <section class="section-bottom">
+    <div>Part of </div>
+    <a href="https://sol21ct.com" target="_blank">
+      <img src="assets/company.jpeg" class="power-by">
+    </a>
+  </section>
+</footer>

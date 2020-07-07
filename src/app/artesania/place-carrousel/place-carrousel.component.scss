@@ -1,0 +1,17 @@
+.default-padding {
+  padding: .5rem;
+}
+
+.handicraft-background {
+  height: 7rem;
+  width: 3rem;
+  cursor: pointer;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}

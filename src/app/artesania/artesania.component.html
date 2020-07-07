@@ -1,0 +1,188 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div *ngIf="!load" class="flex-direction" id="complete-size">
+  <div class="max-width">
+    <div id="gallery">
+      <div id="div-result">    </div>
+      <gallery *ngIf="images.length > 0" gallerize [items]="images"
+               [thumbPosition]="responsive ? 'bottom' : 'right'"
+               loadingMode="indeterminate"></gallery>
+    </div>
+    <h2 class="default-sides-padding no-margin">Descripción de la pieza </h2>
+    <div class="justify short-description default-padding">
+      <markdown class="default-padding" [data]="artesania.descripcioncorta"></markdown>
+    </div>
+    <div class="divider"></div>
+    <div class="padding-artisan">
+      <h2>Artesano</h2>
+      <div class="artesania-profile-container">
+        <div class="artisan-name-container">
+          <div [ngStyle]="{'background': getBackground()}" class="profile-artisan"></div>
+          <div class="width-artisan-name" (click)="goToArtisan(infoArtesano?.id)">
+            <h3
+              class="remove-margin name-artisan-style color-orange">{{infoArtesano?.fields?.nombre}} {{infoArtesano?.fields?.apellidoPaterno}}</h3>
+            <p class="remove-margin color-gray">{{infoArtesano?.estado}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="padding-artisan">
+      <div>
+        <h2>Grupo étnico</h2>
+        <span class="color-orange pointer">
+            {{ethnichGroup[0]?.fields.grupo}}
+          </span>
+      </div>
+    </div>
+    <mat-expansion-panel *ngIf="artesania.descripcionlarga" class="default-padding">
+      <div class="divider"></div>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Ver más
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card-content>
+        <mat-card-subtitle class="justify">
+          {{artesania.descripcionlarga}}
+        </mat-card-subtitle>
+      </mat-card-content>
+    </mat-expansion-panel>
+    <mat-card-actions class="default-padding">
+      <div *ngIf="videoArtisanUrl">
+        <div class="divider"></div>
+        <h4 class="default-padding">En el siguiente video conoce más de la vida y trabajo de {{infoArtesano?.fields?.nombre}}</h4>
+        <iframe width="100%"
+                height="515"
+                frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                [src]="videoArtisanUrl">
+        </iframe>
+      </div>
+    </mat-card-actions>
+    <app-artisan-carrusel [artisan]="infoArtesano">
+    </app-artisan-carrusel>
+    <div class="divider"></div>
+    <app-place-carrousel [place]="place"></app-place-carrousel>
+  </div>
+  <div [ngClass]="{space: activeFixed}" class="borders">
+    <div class="right-container-flex" id="float-container">
+      <h1 class="handicraft-title">{{artesania.nombre}}</h1>
+      <div class="price-content">
+        <div class="info-price-ctn">Precio: {{artesania.precio | currency}} MXN</div>
+        <button mat-raised-button color="primary" class="right-container"
+                [ngClass]="{'precio-tiamiqui-responsive': responsive}">
+          <span (click)="buy()">Comprar ahora</span>
+        </button>
+      </div>
+      <div class="measures-price-ctn">
+        <div class="measures">
+          <div>
+            <div class="artesania-info">
+              <h4>Nombre de la pieza:</h4>
+              <span class="color-blue">{{artesania.nombre}}</span>
+            </div>
+            <div class="artesania-info">
+              <h4>Lugar de elaboración:</h4>
+              <span class="color-blue">{{place?.fields?.Localidad}}</span>
+            </div>
+            <div class="artesania-info">
+              <h4>Elaborada por:</h4>
+              <span (click)="goToArtisan(infoArtesano?.id)"
+                    class="color-blue">{{infoArtesano?.fields?.nombre}} {{infoArtesano?.fields?.apellidoPaterno}} {{infoArtesano?.fields?.apellidoMaterno}}</span>
+            </div>
+            <div class="artesania-info">
+              <h4>Disponibilidad:</h4>
+              <span class="color-blue">{{artesania?.cantidad}}</span>
+            </div>
+          </div>
+          <div>
+            <div class="artesania-info-feature" *ngIf="artesania.peso">
+              <h4>Peso:</h4>
+              <span class="color-blue">{{artesania.peso}}</span>
+            </div>
+            <div class="artesania-info-feature" *ngIf="artesania.altura">
+              <h4>Altura:</h4>
+              <span class="color-blue">{{artesania.altura}}</span>
+            </div>
+            <div class="artesania-info-feature" *ngIf="artesania.largo">
+              <h4>Largo:</h4>
+              <span class="color-blue">{{artesania.largo ? artesania.largo : 'None'}}</span>
+            </div>
+            <div class="artesania-info-feature" *ngIf="artesania.ancho">
+              <h4>Ancho:</h4>
+              <span class="color-blue">{{artesania?.ancho}}</span>
+            </div>
+            <div class="artesania-info-feature" *ngIf="artesania.talla">
+              <h4>Talla:</h4>
+              <span class="color-blue">{{artesania?.talla}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="measures-price-ctn" style="opacity: 0;">
+      <div class="measures">
+        <div>
+          <div class="artesania-info">
+          </div>
+          <div class="artesania-info">
+          </div>
+          <div class="artesania-info">
+          </div>
+          <div class="artesania-info">
+            <h4>Disponibilidad:</h4>
+          </div>
+        </div>
+        <div>
+          <div class="artesania-info-feature" *ngIf="artesania.peso">
+
+          </div>
+          <div class="artesania-info-feature" *ngIf="artesania.altura">
+
+          </div>
+          <div class="artesania-info-feature" *ngIf="artesania.largo">
+
+          </div>
+          <div class="artesania-info-feature" *ngIf="artesania.ancho">
+
+          </div>
+          <div class="artesania-info-feature" *ngIf="artesania.talla">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+<!--    <div class="padding-artisan">-->
+<!--      <h2>Información del artesano</h2>-->
+<!--      <div class="artesania-profile-container">-->
+<!--        <div class="artisan-name-container">-->
+<!--          <div [ngStyle]="{'background': getBackground()}" class="profile-artisan"></div>-->
+<!--          <div class="width-artisan-name" (click)="goToArtisan(infoArtesano?.id)">-->
+<!--            <h3-->
+<!--              class="remove-margin name-artisan-style">{{infoArtesano?.fields?.nombre}} {{infoArtesano?.fields?.apellidoPaterno}}</h3>-->
+<!--            <p class="remove-margin color-gray">{{infoArtesano?.estado}}</p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="divider"></div>-->
+<!--    <div class="padding-artisan">-->
+<!--      <div>-->
+<!--        <h2>Lenguas</h2>-->
+<!--        <span-->
+<!--          class="color-orange"-->
+<!--          #tooltip="matTooltip"-->
+<!--          matTooltip="{{language[0]?.fields?.descripcion}}"-->
+<!--          matTooltipPosition="right">-->
+<!--            {{language[0]?.fields.idioma}}-->
+<!--          </span>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+</div>

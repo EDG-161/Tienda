@@ -1,0 +1,28 @@
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+
+li {
+  padding: 10px;
+  border: 1px solid silver;
+  border-radius: 2px;
+  height: 45px;
+  width: 45px;
+  text-align: center;
+  cursor: pointer;
+  line-height: 25px;
+}
+
+li.disabled {
+  cursor: not-allowed;
+  color: silver;
+}
+
+.active {
+  color: #ffffff;
+  background: #4dadf7;
+}

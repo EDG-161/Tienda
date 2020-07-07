@@ -1,0 +1,110 @@
+.no-margin {
+  margin: 0;
+}
+
+.blue-color {
+  color: #2196F3;
+}
+
+.margin-video {
+  margin: 1rem 0 1rem 0;
+}
+
+.color-orange {
+  color: #FF9800;
+  font-size: 1.2em;
+}
+
+.inner-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.text-selected {
+  color: #673AB7;
+  font-size: 1.2em;
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+.header-image-artisan {
+  height: 10rem;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 1rem;
+  color: white;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.padding-page {
+  padding: 1rem;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.padding-page-sides {
+  padding: 0 1rem 0 1rem;
+}
+
+
+.handicraft-background {
+  height: 7rem;
+  width: 3rem;
+  cursor: pointer;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.artisan-image {
+  width: 5rem;
+  height: 5rem;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: top !important;
+  border-radius: 50%;
+}
+
+.artisan-container {
+  display: flex;
+  margin: 0 1rem;
+  align-items: center;
+}
+
+.margin-left {
+  margin-left: 1rem;
+}
+
+.simple-list {
+  border: 1px solid silver;
+  margin: 1rem 0;
+}
+
+.image-list {
+  width: 100%;
+  height: 11rem;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.title-history {
+  padding-left: 1rem;
+}
+
+.cursor {
+  cursor: pointer;
+}

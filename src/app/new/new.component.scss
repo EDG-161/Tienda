@@ -1,0 +1,36 @@
+.no-margin {
+  margin: 0;
+}
+
+.blue-color {
+  color: #dcf4f4;
+}
+
+.margin-video {
+  margin: 1rem 0 1rem 0;
+}
+
+
+.header-image-news {
+  height: 10rem;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 1rem;
+  color: white;
+}
+
+.padding-page {
+  padding: 1rem;
+}
+
+.padding-page-sides {
+  padding: 0 1rem 0 1rem;
+}
+
+a {
+  color: #03A9F4;
+  text-decoration: none;
+}

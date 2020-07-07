@@ -1,0 +1,144 @@
+@import '~@angular/material/theming';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@font-face {
+  font-family: 'Roboto';
+  src: url(src/assets/fonts/AvenirNextLTPro-Regular.otf);
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+$min_width: 320px;
+$max_width: 1240px;
+$min_font: 12px;
+$max_font: 36px;
+
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  scroll-behavior: smooth;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+$tiamiqui-accent: (
+        50 : #eaf5fe,
+        100 : #cae6fd,
+        200 : #a7d6fb,
+        300 : #83c6f9,
+        400 : #69b9f8,
+        500 : #4eadf7,
+        600 : #47a6f6,
+        700 : #3d9cf5,
+        800 : #3593f3,
+        900 : #2583f1,
+        A100 : #ffffff,
+        A200 : #f8fbff,
+        A400 : #c5deff,
+        A700 : #acd0ff,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #000000,
+                600 : #000000,
+                700 : #000000,
+                800 : #000000,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$tiamiqui-second: (
+        50 : #fdf3e2,
+        100 : #fae1b6,
+        200 : #f7cd85,
+        300 : #f3b954,
+        400 : #f1aa30,
+        500 : #ee9b0b,
+        600 : #ec930a,
+        700 : #e98908,
+        800 : #e77f06,
+        900 : #e26d03,
+        A100 : #ffffff,
+        A200 : #ffe7d6,
+        A400 : #ffcaa3,
+        A700 : #ffbb8a,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #000000,
+                600 : #000000,
+                700 : #000000,
+                800 : #000000,
+                900 : #000000,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$primary: mat-palette($tiamiqui-accent);
+$accent: mat-palette($tiamiqui-second);
+
+$theme: mat-light-theme($primary, $accent);
+@include mat-form-field-theme($theme);
+@include angular-material-theme($theme);
+
+.pattern:before {
+  background: url("./assets/asset1.png");
+  position: absolute;
+  width: 82vw;
+  height: 61px;
+  background-size: contain !important;
+  left: 0;
+  margin-top: -15px;
+  filter: hue-rotate(50deg);
+  opacity: 0.1;
+}
+
+.full-pattern:before {
+  background: url("./assets/asset1.png");
+  position: absolute;
+  width: calc(100vw - 15px);
+  height: 61px;
+  background-size: contain !important;
+  left: 0;
+  margin-top: -15px;
+  filter: hue-rotate(50deg);
+  opacity: 0.1;
+}
+

@@ -1,0 +1,53 @@
+.no-margin {
+  margin: 0;
+}
+
+.blue-color {
+  color: #dcf4f4;
+}
+
+.margin-video {
+  margin: 1rem 0 1rem 0;
+}
+
+.header-image-artisan {
+  height: 10rem;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  padding: 1rem;
+  color: white;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+.padding-page {
+  padding: 1rem;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.padding-page-sides {
+  padding: 0 1rem 0 1rem;
+}
+
+
+.handicraft-background {
+  height: 7rem;
+  width: 3rem;
+  cursor: pointer;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.margin-bottom {
+  margin-bottom: 1rem;
+}

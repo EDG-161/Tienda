@@ -1,0 +1,22 @@
+::ng-deep {
+  cursor: pointer;
+}
+
+.tiamiqui-product-img {
+  width: 15em;
+  height: 15em;
+  background-size: cover !important;
+}
+
+.tiamiqui-product-card {
+  display: flex;
+  flex-direction: column;
+  width: 15em;
+  cursor: pointer;
+}
+
+.tiamiqui-product-content {
+  padding: 16px;
+  font-size: 1em;
+  text-align: center;
+}

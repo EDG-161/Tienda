@@ -1,0 +1,33 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div *ngIf="!load">
+  <div class="header-image-news" [style]="getStyle()">
+    <h1 class="no-margin">{{newData.title}}</h1>
+    <h4 class="no-margin blue-color">{{newData.subtitle}}</h4>
+  </div>
+  <div class="padding-page-sides">
+    <markdown [data]="newData.content">
+    </markdown>
+  </div>
+  <div *ngIf="newData.video" class="margin-video">
+    <iframe width="100%"
+            height="515"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            [src]="videoUrl">
+    </iframe>
+  </div>
+  <div *ngIf="newData.images.length > 0">
+    <h2 class="padding-page-sides">Imágenes</h2>
+    <gallery *ngIf="newData.images.length > 0"
+             [thumb]="false"
+             gallerize [items]="newData.images"
+             loadingMode="indeterminate"></gallery>
+  </div>
+  <a class="margin-video padding-page-sides" href="{{newData.attachment}}" *ngIf="newData.attachment" target="_blank">Visitar
+    liga</a>
+</div>

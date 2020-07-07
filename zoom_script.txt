@@ -1,0 +1,53 @@
+  var img, square, result, rx, ry;
+  img = ;
+  result = document.getElementById("zooomIn");
+
+  square= document.createElement("DIV");
+
+  square.setAttribute("class", "img-zoom-square");
+
+  img.parentElement.insertBefores(square, img);
+
+  rx = result.offsetWidth / lens.offsetWidth;
+  ry = result.offsetHeight / lens.offsetHeight;
+
+  result.style.backgroundImage = "url('" + img.src + "')";
+  result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+
+  square.addEventListener("mousemove", moveLens);
+  img.addEventListener("mousemove", moveLens);
+
+  function moveLens(e) {
+    var pos, x, y;
+
+    e.preventDefault();
+
+    pos = getCursorPos(e);
+
+    x = pos.x - (square.offsetWidth / 2);
+    y = pos.y - (square.offsetHeight / 2);
+
+    if (x > img.width - square.offsetWidth) {x = img.width - square.offsetWidth;}
+    if (x < 0) {x = 0;}
+    if (y > img.height - square.offsetHeight) {y = img.height - square.offsetHeight;}
+    if (y < 0) {y = 0;}
+
+    square.style.left = x + "px";
+    square.style.top = y + "px";
+
+    result.style.backgroundPosition = "-" + (x * rx) + "px -" + (y * ry) + "px";
+  }
+
+  function getCursorPos(e) {
+    var a, x = 0, y = 0;
+    e = e || window.event;
+
+    a = img.getBoundingClientRect();
+
+    x = e.pageX - a.left;
+    y = e.pageY - a.top;
+
+    x = x - window.pageXOffset;
+    y = y - window.pageYOffset;
+    return {x : x, y : y};
+  }

@@ -1,0 +1,230 @@
+button {
+  font-family: 'Roboto', sans-serif;
+}
+
+.under-construction > img {
+  width: 26em;
+}
+
+
+.white-background {
+  background: white;
+  padding: 2em;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.back-to-top {
+  width: 40px;
+  height: 40px;
+  background: #1e7bc8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  margin: 2em;
+  opacity: 0;
+  transition: all .2s ease;
+}
+
+.show {
+  opacity: 1;
+}
+
+.mat-sidenav-container, .mat-sidenav-content, .mat-tab-body-content {
+  transform: none !important;
+}
+
+.center-menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-logo {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  width: 13em;
+  height: 3em;
+}
+
+.mat-toolbar-single-row {
+  height: 3em;
+}
+
+.mat-toolbar {
+  background: white !important;
+  color: #4eadf7!important;
+  z-index: 10;
+}
+
+/*FOTTER*/
+footer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; /*flex items will wrap onto multiple lines, from top to bottom.*/
+}
+
+.section-top {
+  display: flex;
+  justify-content: center; /*items are centered along the line*/
+  padding: 20px 0;
+}
+
+.section-bottom {
+  text-align: center;
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.margin-left-footer-header {
+  margin-left: .4rem;
+}
+
+.logos > img {
+  width: 40px;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 140px;
+}
+
+.col {
+  margin: 0 15px;
+  width: 25% /*optional*/
+}
+
+.power-by {
+  width: 4em;
+  margin-left: 1em;
+}
+
+@media all and (max-width: 600px){ /*style if screen size is <600px*/
+  .section-top{
+    flex-direction: column;
+  }
+  .col{
+    text-align: center;
+    width: 100%;
+    margin: 0
+  }
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.adjust-button {
+  height: 36px;
+}
+
+mat-toolbar {
+  position: fixed;
+}
+
+.wrapper {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 60px auto;
+  grid-template-areas: "otro otro otro otro otro otro otro otro otro otro otro otro" "content content content content content content content content content content right right";
+}
+
+.tiamiqui-full-view {
+  grid-template-areas: "otro otro otro otro otro otro otro otro otro otro otro otro" "content content content content content content content content content content content content" !important;
+}
+
+.tiamiqui-view {
+  grid-template-areas: "otro otro otro otro otro otro otro otro otro otro otro otro" "content content content content content content content content content content right right" !important;
+}
+
+.left-aside {
+  grid-area: left;
+}
+
+.right-aside {
+  grid-area: right;
+}
+
+.aside-container {
+  position: sticky;
+  display: flex;
+  flex-direction: column;
+  top: 62px;
+  align-items: center;
+  height: 100vh;
+  overflow: scroll;
+}
+
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: #003154 !important;
+}
+
+.content {
+  grid-area: content;
+}
+
+.hide {
+  display: none;
+}
+
+
+.subscribe-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-blue {
+  background: url('../assets/curved.svg');
+  color: #003154;
+  padding: .5rem;
+  background-size: cover !important;
+  height: 8rem;
+  background-repeat: no-repeat !important;
+  background-position: bottom !important;
+}
+
+.dynamic-width {
+  width: calc(100vw - (100vw / 2));
+  color: #003154;
+}
+
+.flex-container-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+}
+
+.all-content {
+  width: 100%;
+  font-size: 15px;
+  margin-top: 0.6rem;
+}
+
+.input-search, .ui-autocomplete-input, >>> .input-search {
+  height: 1rem;
+  padding: 0 .5rem;
+  border: 1px solid silver;
+  border-radius: 3px;
+  margin: 0 .3rem;
+  width: 100%;
+}
+
+.full-width-button {
+  width: 7rem;
+}

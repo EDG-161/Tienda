@@ -1,0 +1,38 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div *ngIf="!load" class="header-image-place">
+  <h1 class="no-margin">{{placeData.title}}</h1>
+  <h4 class="no-margin blue-color">{{placeData.subtitle}}</h4>
+  <markdown [data]="placeData.content">
+  </markdown>
+  <gallery *ngIf="placeData.images.length > 0"
+           [thumb]="false"
+           gallerize [items]="placeData.images"
+           loadingMode="indeterminate"></gallery>
+  <div *ngIf="placeData.video" class="margin-video">
+    <h2>Video de {{placeData.place}}</h2>
+    <iframe width="100%"
+            height="515"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            [src]="videoUrl">
+    </iframe>
+  </div>
+  <h2>Artesanías de {{placeData.place}}</h2>
+  <div class="card text-center m-3">
+    <div class="card-body">
+      <div class="handicraft-background" *ngFor="let item of pageOfItems" [style]="gethandiCraftImage(item.images)"
+           (click)="goHandicraft(item.link)">
+
+      </div>
+    </div>
+    <div class="card-footer pb-0 pt-3">
+      <app-tiamiqui-paginate [pageSize]="pageSize" [items]="handicrafts"
+                             (changePage)="onChangePage($event)"></app-tiamiqui-paginate>
+    </div>
+  </div>
+</div>

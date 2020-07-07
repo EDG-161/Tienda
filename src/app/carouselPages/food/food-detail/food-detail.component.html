@@ -1,0 +1,18 @@
+<mat-progress-bar
+  *ngIf="load"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+<div *ngIf="!load" class="margin-bottom">
+  <div class="header-image-artisan" [style]="getStyle()">
+    <h1 class="no-margin">{{food.name}}</h1>
+  </div>
+  <div class="padding-page-sides">
+    <markdown [data]="food.content">
+    </markdown>
+  </div>
+  <gallery *ngIf="food.images.length > 0"
+           [thumb]="false"
+           gallerize [items]="food.images"
+           loadingMode="indeterminate"></gallery>
+</div>

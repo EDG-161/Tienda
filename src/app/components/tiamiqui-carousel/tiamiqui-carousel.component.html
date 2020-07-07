@@ -1,0 +1,33 @@
+<div class="carousel-images">
+  <button mat-button (click)="previous()" class="carousel-button-left"><i class="fa fa-angle-left"></i></button>
+  <ul>
+    <li *ngFor="let tiamiquiItem of tiamiquiCarousel; let i=index" [ngClass]="{'slide-no-view': currentIndex !== i}">
+      <figure class="tiamiqui-image-action" *ngIf="tiamiquiItem.type === 'action'" [ngClass]="{'hover': activeHover}">
+        <figcaption>
+          <h2 class="tiamiqui-carousel-title">{{tiamiquiItem.title}}</h2>
+          <p class="tiamiqui-carousel-subtitle">{{tiamiquiItem.content}}</p>
+        </figcaption>
+        <a *ngIf="tiamiquiItem.link" href="{{tiamiquiItem.link}}"></a>
+<!--        <img src="{{tiamiquiItem.img}}" alt="{{tiamiquiItem.title}}"/>-->
+        <div [ngStyle]="{'background-image': 'url(' + tiamiquiItem.img + ')'}" class="carousel-info"></div>
+      </figure>
+      <figure class="tiamiqui-image-action hover" *ngIf="tiamiquiItem.type === 'image'">
+        <figcaption>
+          <h2 class="tiamiqui-carousel-title">{{tiamiquiItem.title}}</h2>
+          <p class="tiamiqui-carousel-subtitle">{{tiamiquiItem.content}}</p>
+        </figcaption>
+        <a *ngIf="tiamiquiItem.link" href="{{tiamiquiItem.link}}"></a>
+<!--        <img src="{{tiamiquiItem.img}}" alt="{{tiamiquiItem.title}}"/>-->
+        <div [ngStyle]="{'background-image': 'url(' + tiamiquiItem.img + ')'}" class="carousel-info"></div>
+      </figure>
+    </li>
+  </ul>
+  <button mat-button (click)="next()" class="carousel-button-right"><i class="fa fa-angle-right"></i></button>
+</div>
+<div>
+  <ul>
+    <li *ngFor="let tiamiquiItem of tiamiquiCarousel; let i=index" (click)="changeIndex(i)" class="circle"
+        [ngClass]="{active:currentIndex === i}"></li>
+  </ul>
+</div>
+

@@ -1,0 +1,281 @@
+<mat-progress-bar
+  *ngIf="loadMap"
+  color="primary"
+  mode="indeterminate">
+</mat-progress-bar>
+
+<div class="padding-section">
+  <div>
+    <p class="header-section">En variedad y calidad de artesanías <strong>México</strong> es un referente mundial. Pon
+      el cursor y da clic en un estado de la República Mexicana, ¡elige tu artesanía preferida!</p>
+    <div id="map-tiamiqui" class="tiamiqui-map"></div>
+  </div>
+  <div>
+    <div class="header-with-buttons">
+      <div *ngIf="!currentCountry && !currentPlace" class="title">
+        Artesanías de todo México
+      </div>
+
+      <div *ngIf="currentCountry">
+        <div class="title pattern">
+          <p>Artesanías de {{currentCountry?.name}}</p>
+        </div>
+        <div *ngIf="searchHandicrafts.length === 0">
+          Actualmente no contamos con artesanías en {{currentCountry?.name}}
+        </div>
+      </div>
+
+      <div *ngIf="currentPlace">
+        <div class="title pattern">
+          <p>Artesanías de {{currentPlace?.name}}</p>
+        </div>
+        <div *ngIf="searchHandicrafts.length === 0">
+          Actualmente no contamos con artesanías en {{currentPlace?.name}}
+        </div>
+      </div>
+      <button mat-raised-button *ngIf="currentPlace || currentCountry" color="accent" (click)="resetView()">
+        Centrar mapa
+      </button>
+    </div>
+
+    <div *ngIf="searchHandicrafts">
+      <div class="card text-center m-3">
+        <div class="card-body">
+          <div class="handicraft-background" *ngFor="let item of pageOfItems" [style]="gethandiCraftImage(item.images)"
+               (click)="goHandicraft(item.link)">
+          </div>
+        </div>
+        <div class="card-footer pb-0 pt-3">
+          <app-tiamiqui-paginate [pageSize]="pageSize" [items]="searchHandicrafts"
+                                 (changePage)="onChangePage($event)"></app-tiamiqui-paginate>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div id="map" class="tiamiqui-map-container full"-->
+<!--     [ngClass]="{'tiamiqui-map-container-responsive': responsive, 'grid-area-base': !showFilter}">-->
+<!--  <div class="header-search">-->
+<!--    <div class="flex justify-content-start">-->
+<!--      <div class="flex">-->
+<!--        <div class="flex flex-column interactive-content">-->
+<!--          <h2 class="interactive-title">Mapa Interactivo</h2>-->
+<!--          <div [hidden]="showFilter">Da clic en un estado de la República Mexicana para conocer sus artesanías</div>-->
+<!--          <p [hidden]="!showFilter" class="country-name">-->
+<!--            <span>Estado de </span>-->
+<!--            <span>{{countryName}}</span>-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;      <div class="sub-header right" [hidden]="!showFilter">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <p class="filters-text">Filtra las artesanías de {{countryName}} por</p>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <mat-card-content class="filters-grid" [ngClass]="{'card-filters-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;          <mat-form-field *ngIf="existsPlaces" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-label>Lugar de elaboración</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-select [formControl]="placeSelected" (selectionChange)="refresh(true); filterPlaceListChange($event)">&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option *ngFor="let place of filterPlaceList" [value]="place">{{place.fields.Localidad}}</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <mat-form-field *ngIf="existsTypes" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-label>Tipo de Artesanía</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-select [formControl]="types" (selectionChange)="refresh(); filterTypeListChange($event)">&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option *ngFor="let type of filterTypeList" [value]="type">{{type.fields.tipo}}</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <mat-form-field *ngIf="existsRamas" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-label>Material</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-select [formControl]="ramas" (selectionChange)="refresh(); filterRamaListChange($event)">&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option *ngFor="let rama of filterRamaList"&ndash;&gt;-->
+<!--    &lt;!&ndash;                          [value]="rama">{{rama.fields.rama}}</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <mat-form-field *ngIf="existsEthnicGroups" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-label>Grupo Étnico</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-select [formControl]="ethnicGroups" (selectionChange)="refresh(); filterEthnichGroupListChange($event)">&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option *ngFor="let ethnichGroup of filterEthnichGroupList"&ndash;&gt;-->
+<!--    &lt;!&ndash;                          [value]="ethnichGroup">{{ethnichGroup.fields.grupo}}</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--    &lt;!&ndash;          <mat-form-field *ngIf="existsLanguages" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-label>Lengua indígena</mat-label>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <mat-select [formControl]="languages" (selectionChange)="refresh(); filterLanguageListChange($event)">&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;              <mat-option *ngFor="let language of filterLanguageList"&ndash;&gt;-->
+<!--    &lt;!&ndash;                          [value]="language">{{language.fields.idioma}}</mat-option>&ndash;&gt;-->
+<!--    &lt;!&ndash;            </mat-select>&ndash;&gt;-->
+<!--    &lt;!&ndash;          </mat-form-field>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </mat-card-content>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--  </div>-->
+<!--  <div id="map-loader" [ngClass]="{'middle-basis': showFilter, 'full-width': responsive}">-->
+<!--    {{mapsLoader}}-->
+<!--    <mat-progress-bar-->
+<!--      [hidden]="!mapsLoader"-->
+<!--      color="primary"-->
+<!--      mode="indeterminate">-->
+<!--    </mat-progress-bar>-->
+<!--    <div id="map-tiamiqui" class="map-default-style" [ngClass]="{'map-default-style-responsive': responsive}"></div>-->
+<!--  </div>-->
+<!--  <mat-card id="filter-container" [hidden]="!showFilter" [ngClass]="{'filter-container-responsive': responsive}">-->
+<!--    <mat-tab-group dynamicHeight>-->
+<!--      <mat-tab>-->
+<!--        <ng-template mat-tab-label>-->
+<!--          Artesanías-->
+<!--        </ng-template>-->
+<!--        <mat-card-subtitle>-->
+<!--          {{descripcion}}-->
+<!--        </mat-card-subtitle>-->
+<!--        <mat-card-subtitle>Aquí podrás ver todas las artesanías que se elaboran en el estado de {{countryName}}, o-->
+<!--          bien,-->
+<!--          utiliza los siguientes filtros para encontrar la artesanía que estás buscando.{{countryName}}.-->
+<!--        </mat-card-subtitle>-->
+<!--        <mat-card-content class="filters card-filters" [ngClass]="{'card-filters-responsive': responsive}">-->
+<!--          <mat-form-field *ngIf="existsPlaces" class="regular" [ngClass]="{'full-select-responsive': responsive}">-->
+<!--            <mat-label>Lugar de elaboración</mat-label>-->
+<!--            <mat-select [formControl]="placeSelected"-->
+<!--                        (selectionChange)="refresh(true); filterPlaceListChange()">-->
+<!--              <mat-option>Ninguno</mat-option>-->
+<!--              <mat-option *ngFor="let place of filterPlaceList"-->
+<!--                          [value]="place">{{place.fields.Localidad}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field *ngIf="existsRamas" class="regular" [ngClass]="{'full-select-responsive': responsive}">-->
+<!--            <mat-label>Rama artesanal</mat-label>-->
+<!--            <mat-select [formControl]="ramas" (selectionChange)="refresh(); filterRamaListChange($event)">-->
+<!--              <mat-option>Ninguno</mat-option>-->
+<!--              <mat-option *ngFor="let rama of filterRamaList"-->
+<!--                          [value]="rama">{{rama.fields.rama}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field *ngIf="existsTypes" class="regular" [ngClass]="{'full-select-responsive': responsive}">-->
+<!--            <mat-label>Tipo de Artesanía</mat-label>-->
+<!--            <mat-select [formControl]="types" (selectionChange)="refresh(); filterTypeListChange($event)">-->
+<!--              <mat-option>Ninguno</mat-option>-->
+<!--              <mat-option *ngFor="let type of filterTypeList" [value]="type">{{type.fields.tipo}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          <mat-form-field *ngIf="existsEthnicGroups" class="medium" [ngClass]="{'full-select-responsive': responsive}">-->
+<!--            <mat-label>Grupo Étnico</mat-label>-->
+<!--            <mat-select [formControl]="ethnicGroups"-->
+<!--                        (selectionChange)="refresh(); filterEthnichGroupListChange($event)">-->
+<!--              <mat-option>Ninguno</mat-option>-->
+<!--              <mat-option *ngFor="let ethnichGroup of filterEthnichGroupList"-->
+<!--                          [value]="ethnichGroup">{{ethnichGroup.fields.grupo}}</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+<!--          &lt;!&ndash;            <mat-form-field *ngIf="existsLanguages" class="medium" [ngClass]="{'full-select-responsive': responsive}">&ndash;&gt;-->
+<!--          &lt;!&ndash;              <mat-label>Lengua indígena</mat-label>&ndash;&gt;-->
+<!--          &lt;!&ndash;              <mat-select [formControl]="languages" (selectionChange)="refresh(); filterLanguageListChange($event)">&ndash;&gt;-->
+<!--          &lt;!&ndash;                <mat-option>Ninguno</mat-option>&ndash;&gt;-->
+<!--          &lt;!&ndash;                <mat-option *ngFor="let language of filterLanguageList"&ndash;&gt;-->
+<!--          &lt;!&ndash;                            [value]="language">{{language.fields.idioma}}</mat-option>&ndash;&gt;-->
+<!--          &lt;!&ndash;              </mat-select>&ndash;&gt;-->
+<!--          &lt;!&ndash;            </mat-form-field>&ndash;&gt;-->
+<!--        </mat-card-content>-->
+<!--        <div *ngIf="showDetailPlace" class="padding-content">-->
+<!--          <h4>{{placeSelected.value?.fields.Localidad}}</h4>-->
+<!--          <p>{{placeSelected.value?.fields.descripcion}}</p>-->
+<!--          <h4>Conoce todas las artesanías de este lugar:</h4>-->
+<!--        </div>-->
+<!--        <mat-card-content class="flex flex-column align-items-center scroll-container">-->
+<!--          <div class="flex-wrap">-->
+<!--            <div *ngIf="filterArtesanias.length === 0" class="card-header flex-wrap">-->
+<!--              No existen artesanias-->
+<!--            </div>-->
+<!--            <div-->
+<!--              *ngFor="let artesania of filterArtesanias"-->
+<!--              class="artesania"-->
+<!--              [ngClass]="{'artesania-responsive': responsive}"-->
+<!--              [ngStyle]="{'background': getBackground(artesania)}"-->
+<!--              (mouseleave)="removeAnimationPoint(artesania)"-->
+<!--              (click)="goToArtesania(artesania.id)">-->
+<!--              {{artesania.name}}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <div>-->
+<!--              <button mat-button color="primary" (click)="nextPage(currentPage - 1)" [hidden]="currentPage === 1">-->
+<!--                <i class="fa fa-arrow-left"></i>-->
+<!--              </button>-->
+<!--              {{currentPage}} de {{totalPages}}-->
+<!--              <button mat-button color="primary" (click)="nextPage(currentPage + 1)"-->
+<!--                      [disabled]="currentPage === totalPages">-->
+<!--                <i class="fa fa-arrow-right"></i>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </mat-card-content>-->
+<!--        <mat-divider></mat-divider>-->
+<!--        <div class="padding-content padding-top" *ngIf="imagesPlace.length > 0">-->
+<!--          <h4>Galería de imágenes</h4>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--          <gallery *ngIf="imagesPlace.length > 0"-->
+<!--                   [thumb]="false"-->
+<!--                   gallerize [items]="imagesPlace"-->
+<!--                   loadingMode="indeterminate"></gallery>-->
+<!--        </div>-->
+<!--        <mat-expansion-panel *ngIf="showDetailPlace">-->
+<!--          <mat-expansion-panel-header>-->
+<!--            <mat-panel-title>-->
+<!--            <span class="active-link">Quieres conocer más de {{placeSelected.value?.fields.Localidad}}-->
+<!--              da click aquí.</span>-->
+<!--            </mat-panel-title>-->
+<!--          </mat-expansion-panel-header>-->
+<!--          <div>-->
+<!--            <h3>Contexto</h3>-->
+<!--            <p>-->
+<!--              {{placeSelected.value?.fields.contexto}}-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <h3>Actualidad</h3>-->
+<!--            <p>-->
+<!--              {{placeSelected.value?.fields.actualidad}}-->
+<!--            </p>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <h3>Historia</h3>-->
+<!--            <p>-->
+<!--              {{placeSelected.value?.fields.historia}}-->
+<!--            </p>-->
+<!--          </div>-->
+<!--        </mat-expansion-panel>-->
+<!--      </mat-tab>-->
+<!--      <mat-tab>-->
+<!--        <ng-template mat-tab-label>-->
+<!--          Cultura de {{countryName}}-->
+<!--        </ng-template>-->
+<!--        <div *ngIf="videoCountry" class="add-margin">-->
+<!--          <iframe width="100%"-->
+<!--                  height="315"-->
+<!--                  frameborder="0"-->
+<!--                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"-->
+<!--                  allowfullscreen-->
+<!--                  [src]="videoCountry"></iframe>-->
+<!--        </div>-->
+<!--        <div class="padding-content padding-top" *ngIf="stateImages.length > 0">-->
+<!--          <h4>Galería de imágenes</h4>-->
+<!--        </div>-->
+<!--        <gallery *ngIf="stateImages.length > 0"-->
+<!--                 [thumb]="false"-->
+<!--                 gallerize [items]="stateImages"-->
+<!--                 loadingMode="indeterminate"></gallery>-->
+<!--      </mat-tab>-->
+<!--    </mat-tab-group>-->
+<!--    &lt;!&ndash;    <div *ngIf="showDetailPlace">&ndash;&gt;-->
+<!--    &lt;!&ndash;      <h2>Conoce más de {{placeSelected.value?.fields.Localidad}}</h2>&ndash;&gt;-->
+<!--    &lt;!&ndash;      <div>{{placeSelected.value?.fields.descripcion}}</div>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <mat-divider></mat-divider>-->
+<!--    &lt;!&ndash;      <mat-card-actions class="card-footer">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <button mat-button (click)="resetView()">REGRESAR</button>&ndash;&gt;-->
+<!--    &lt;!&ndash;      </mat-card-actions>&ndash;&gt;-->
+<!--  </mat-card>-->
+<!--</div>-->
